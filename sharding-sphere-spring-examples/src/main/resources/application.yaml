@@ -1,0 +1,26 @@
+logging:
+  level:
+    root: info
+    io.github.notoday.sharding.sphere.examples: debug
+    io.github.notoday.sharding.sphere.examples.repository: INFO
+    org.apache.shardingsphere: debug
+
+spring:
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:sharding.yaml
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: io.github.notoday.sharding.sphere.examples.domain
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+
+# Below is the configuration of the application
+application:
+  encrypt:
+    aes-key: changeme

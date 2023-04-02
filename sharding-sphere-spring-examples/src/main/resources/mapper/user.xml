@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.github.notoday.sharding.sphere.examples.repository.UserRepository">
+
+    <sql id="base_column">
+        id, first_name, last_name, username, password, email, created_date, last_modified_date
+    </sql>
+
+    <insert id="insert" parameterType="io.github.notoday.sharding.sphere.examples.domain.User"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (first_name, last_name, username, password, email, created_date, last_modified_date)
+        VALUES (#{firstName}, #{lastName}, #{username}, #{password}, #{email}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="io.github.notoday.sharding.sphere.examples.domain.User">
+        UPDATE user
+        SET last_modified_date = NOW(),
+            first_name = #{firstName},
+            last_name = #{lastName},
+            username = #{username},
+            password = #{password},
+            email = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <select id="findById" resultType="io.github.notoday.sharding.sphere.examples.domain.User" parameterType="Long">
+        SELECT <include refid="base_column"/>
+        FROM user WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="io.github.notoday.sharding.sphere.examples.domain.User">
+        SELECT <include refid="base_column"/>
+        FROM user
+    </select>
+
+    <select id="listByFirstEmail" resultType="io.github.notoday.sharding.sphere.examples.domain.User">
+        SELECT <include refid="base_column"/>
+        FROM user WHERE email = #{email}
+    </select>
+
+    <select id="listByLikeEmail" resultType="io.github.notoday.sharding.sphere.examples.domain.User">
+        SELECT <include refid="base_column"/>
+        FROM user WHERE email LIKE CONCAT('%', #{email}, '%')
+    </select>
+</mapper>

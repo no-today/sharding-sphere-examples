@@ -1,0 +1,35 @@
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Levi",
+  "lastName": "Ackerman",
+  "username": "no-today",
+  "password": "changeme",
+  "email": "no.today@outlook.com"
+}
+
+###
+GET http://localhost:8080/api/users/1
+Accept: application/json
+
+###
+GET http://localhost:8080/api/users?pageNum=1&pageSize=10
+Accept: application/json
+
+###
+GET http://localhost:8080/api/users/listByEmail/no.today@outlook.com
+Accept: application/json
+
+###
+GET http://localhost:8080/api/users/listByLikeEmail/outlook
+Accept: application/json
+
+###
+GET http://localhost:8080/api/user-extends
+Accept: application/json
+
+###
+GET http://localhost:8080/api/user-extends/wrap/10
+Accept: application/json
+

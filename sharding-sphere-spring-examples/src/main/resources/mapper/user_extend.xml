@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.github.notoday.sharding.sphere.examples.repository.UserExtendRepository">
+
+    <sql id="base_column">
+        user_id, ext_field1, ext_field2, ext_field3, last_modified_date
+    </sql>
+
+    <insert id="insert" parameterType="io.github.notoday.sharding.sphere.examples.domain.UserExtend">
+        INSERT INTO user_extend (user_id, ext_field1, ext_field2, ext_field3, last_modified_date)
+        VALUES (#{user_id}, #{ext_field1}, #{ext_field2}, #{ext_field3}, NOW())
+    </insert>
+
+    <update id="update" parameterType="io.github.notoday.sharding.sphere.examples.domain.UserExtend">
+        UPDATE user_extend
+        SET
+            ext_field1 = #{ext_field1},
+            ext_field2 = #{ext_field2},
+            ext_field3 = #{ext_field3},
+            last_modified_date = #{last_modified_date}
+        WHERE user_id = #{user_id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM user_extend WHERE user_id = #{user_id}
+    </delete>
+
+    <select id="findById" parameterType="java.lang.Long" resultType="io.github.notoday.sharding.sphere.examples.domain.UserExtend">
+        SELECT <include refid="base_column"/>
+        FROM user_extend
+        WHERE user_id = #{user_id}
+    </select>
+
+    <select id="findAll" resultType="io.github.notoday.sharding.sphere.examples.domain.UserExtend">
+        SELECT <include refid="base_column"/>
+        FROM user_extend
+    </select>
+
+    <select id="findWrapById" parameterType="java.lang.Long" resultType="io.github.notoday.sharding.sphere.examples.domain.UserExtendWrap">
+        SELECT u.id,
+               u.first_name,
+               u.last_name,
+               u.username,
+               u.email,
+               u.created_date,
+               u.last_modified_date,
+               ue.ext_field1,
+               ue.ext_field2,
+               ue.ext_field3
+        FROM user u
+        JOIN ds2.user_extend ue on ue.user_id = u.id
+        WHERE u.id = #{userId}
+    </select>
+</mapper>
