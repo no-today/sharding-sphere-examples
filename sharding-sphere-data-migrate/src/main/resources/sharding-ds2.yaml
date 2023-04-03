@@ -1,27 +1,4 @@
-props:
-  sql-show: true
-  sql-federation-type: ADVANCED # or ORIGINAL
-dataSources:
-  ds1:
-    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://localhost:3306/ds1
-    username: root
-    password: changeme
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 5
-      connection-timeout: 30000
-  ds2:
-    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://localhost:3306/ds2
-    username: root
-    password: changeme
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 5
-      connection-timeout: 30000
+# 根据数据加密配置自动生成数据迁移Sql脚本
 rules:
   - !ENCRYPT
     encryptors:
@@ -34,20 +11,9 @@ rules:
       like_encryptor:
         type: CHAR_DIGEST_LIKE
     tables:
-      user:
-        columns:
-          email:
-            plainColumn: email
-            cipherColumn: email_encrypted
-            assistedQueryColumn: email_query_helper
-            likeQueryColumn: email_like_query
-            encryptorName: aes_encryptor
-            assistedQueryEncryptorName: hash_encryptor
-            likeQueryEncryptorName: like_encryptor
       user_extend:
         columns:
           ext_field1:
-            plainColumn: ext_field1
             cipherColumn: ext_field1_encrypted
             assistedQueryColumn: ext_field1_query_helper
             likeQueryColumn: ext_field1_like_query
@@ -55,7 +21,6 @@ rules:
             assistedQueryEncryptorName: hash_encryptor
             likeQueryEncryptorName: like_encryptor
           ext_field2:
-            plainColumn: ext_field2
             cipherColumn: ext_field2_encrypted
             assistedQueryColumn: ext_field2_query_helper
             likeQueryColumn: ext_field2_like_query
@@ -63,7 +28,6 @@ rules:
             assistedQueryEncryptorName: hash_encryptor
             likeQueryEncryptorName: like_encryptor
           ext_field3:
-            plainColumn: ext_field3
             cipherColumn: ext_field3_encrypted
             assistedQueryColumn: ext_field3_query_helper
             likeQueryColumn: ext_field3_like_query

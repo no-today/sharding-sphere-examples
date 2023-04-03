@@ -14,3 +14,6 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 5
       connection-timeout: 30000
+
+application:
+  sharding-config: sharding-ds1.yaml

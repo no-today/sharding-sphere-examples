@@ -29,6 +29,6 @@ Accept: application/json
 GET http://localhost:8080/api/user-extends
 Accept: application/json
 
-###
+### 虽然支持跨库 JOIN，但是是双边查全表，然后在内存完成 JOIN 的，巨坑!!!
 GET http://localhost:8080/api/user-extends/wrap/10
 Accept: application/json

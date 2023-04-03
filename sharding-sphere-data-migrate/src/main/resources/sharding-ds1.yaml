@@ -1,0 +1,22 @@
+# 根据数据加密配置自动生成数据迁移Sql脚本
+rules:
+  - !ENCRYPT
+    encryptors:
+      aes_encryptor:
+        type: AES
+        props:
+          aes-key-value: changeme
+      hash_encryptor:
+        type: HASH
+      like_encryptor:
+        type: CHAR_DIGEST_LIKE
+    tables:
+      user:
+        columns:
+          email:
+            cipherColumn: email_encrypted
+            assistedQueryColumn: email_query_helper
+            likeQueryColumn: email_like_query
+            encryptorName: aes_encryptor
+            assistedQueryEncryptorName: hash_encryptor
+            likeQueryEncryptorName: like_encryptor

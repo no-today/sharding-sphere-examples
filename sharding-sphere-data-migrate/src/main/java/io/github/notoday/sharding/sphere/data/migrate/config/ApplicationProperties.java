@@ -26,7 +26,7 @@ public class ApplicationProperties {
     /**
      * Sharding 配置文件路径
      */
-    private String shardingConfig = "sharding.yaml";
+    private String shardingConfig = "sharding-ds1.yaml";
 
     /**
      * 迁移SQL脚本输出路径
