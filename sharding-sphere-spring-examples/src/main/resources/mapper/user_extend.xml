@@ -50,7 +50,7 @@
                ue.ext_field2,
                ue.ext_field3
         FROM user u
-        JOIN ds2.user_extend ue on ue.user_id = u.id
+        LEFT JOIN user_extend ue on ue.user_id = u.id
         WHERE u.id = #{userId}
     </select>
 </mapper>

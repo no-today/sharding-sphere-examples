@@ -39,7 +39,6 @@ INSERT INTO user (username, password, last_name, first_name, email, created_date
     ('user9', 'password9', 'Garcia', 'David', 'david.garcia@example.com', '2023-03-28 12:00:00', '2023-03-28 12:00:00'),
     ('user10', 'password10', 'Lopez', 'Olivia', 'olivia.lopez@example.com', '2023-03-28 12:15:00', '2023-03-28 12:15:00');
 
-
 -- 新增加密列
 alter table user add email_encrypted varchar(255) null;
 alter table user add email_query_helper varchar(255) null;
@@ -79,7 +78,7 @@ ALTER TABLE user_extend ADD ext_field1_encrypted VARCHAR(255) NULL;
 ALTER TABLE user_extend ADD ext_field1_query_helper VARCHAR(255) NULL;
 ALTER TABLE user_extend ADD ext_field1_like_query VARCHAR(255) NULL;
 ALTER TABLE user_extend ADD ext_field2_encrypted VARCHAR(255) NULL;
-ALTER TABLE user_extend ADD ext_field1_query_helper VARCHAR(255) NULL;
+ALTER TABLE user_extend ADD ext_field2_query_helper VARCHAR(255) NULL;
 ALTER TABLE user_extend ADD ext_field2_like_query VARCHAR(255) NULL;
 ALTER TABLE user_extend ADD ext_field3_encrypted VARCHAR(255) NULL;
 ALTER TABLE user_extend ADD ext_field3_query_helper VARCHAR(255) NULL;

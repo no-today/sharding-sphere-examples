@@ -37,6 +37,7 @@ rules:
       user:
         columns:
           email:
+            plainColumn: email  # 明文列删除后去掉配置
             cipherColumn: email_encrypted
             assistedQueryColumn: email_query_helper
             likeQueryColumn: email_like_query
@@ -46,11 +47,13 @@ rules:
       user_extend:
         columns:
           user_id:
+            plainColumn: user_id
             cipherColumn: user_id_encrypted
             assistedQueryColumn: user_id_query_helper
             encryptorName: aes_encryptor
             assistedQueryEncryptorName: hash_encryptor
           ext_field1:
+            plainColumn: ext_field1
             cipherColumn: ext_field1_encrypted
             assistedQueryColumn: ext_field1_query_helper
             likeQueryColumn: ext_field1_like_query
@@ -58,13 +61,15 @@ rules:
             assistedQueryEncryptorName: hash_encryptor
             likeQueryEncryptorName: like_encryptor
           ext_field2:
+            plainColumn: ext_field2
             cipherColumn: ext_field2_encrypted
-            assistedQueryColumn: ext_field1_query_helper
+            assistedQueryColumn: ext_field2_query_helper
             likeQueryColumn: ext_field2_like_query
             encryptorName: aes_encryptor
             assistedQueryEncryptorName: hash_encryptor
             likeQueryEncryptorName: like_encryptor
           ext_field3:
+            plainColumn: ext_field3
             cipherColumn: ext_field3_encrypted
             assistedQueryColumn: ext_field3_query_helper
             likeQueryColumn: ext_field3_like_query
